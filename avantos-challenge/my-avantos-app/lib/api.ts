@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.avantos-dev.io/api/v1";
+const BASE_URL = "http://localhost:3001/api/v1"; 
 
 export async function fetchGraphData(tenantId: string, blueprintId: string, versionId: string) {
     const API_URL = `${BASE_URL}/${tenantId}/actions/blueprints/${blueprintId}/${versionId}/graph`;
