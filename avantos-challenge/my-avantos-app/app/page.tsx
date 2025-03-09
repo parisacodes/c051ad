@@ -1,37 +1,24 @@
 "use client";
-import { useState } from "react";
+
+import Link from "next/link";
 
 export default function Home() {
-  const [response, setResponse] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const sendApplication = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/apply", {
-        method: "POST",
-      });
-
-      const data = await res.json();
-      setResponse(JSON.stringify(data, null, 2));
-    } catch (error) {
-      setResponse("Error submitting application.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>Avantos Application</h1>
-      <button onClick={sendApplication} disabled={loading}>
-        {loading ? "Submitting..." : "Submit Application"}
-      </button>
-      {response && (
-        <pre style={{ marginTop: "20px", textAlign: "left", whiteSpace: "pre-wrap" }}>
-          {response}
-        </pre>
-      )}
-    </div>
-  );
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+            <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg text-center">
+                <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                    Welcome to the Form DAG Viewer
+                </h1>
+                <p className="text-gray-600 mb-6">
+                    Click the button below to explore the form graph.
+                </p>
+                <Link
+                    href="/tenant/123/blueprint/bp_456/version/bpv_123"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-200"
+                >
+                    View Form Graph
+                </Link>
+            </div>
+        </div>
+    );
 }
